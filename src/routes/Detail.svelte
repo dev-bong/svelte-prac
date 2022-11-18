@@ -1,10 +1,12 @@
 <script>
     import fastapi from "../lib/api"
+    import Error from "../components/Error.svelte"
 
     export let params = {}
     let post_id = params.post_id
     let post = {comments:[]}
     let content = ""
+    let error = {detail:[]}
 
     function get_post() {
         fastapi("get", "/api/post/detail/" + post_id, {}, (json) => {
@@ -23,7 +25,11 @@
         fastapi('post', url, params, 
             (json) => {
                 content = ''
+                error = {detail:[]}
                 get_post()
+            },
+            (err_json) => {
+                error = err_json
             }
         )
     }
@@ -38,7 +44,8 @@
         <li>{comment.content}</li>
     {/each}
 </ul>
+<Error error={error} />
 <form method="post">
     <textarea rows="15" bind:value={content}></textarea>
-    <input type="submit" value="답변등록" on:click="{post_comment}">
+    <input type="submit" value="댓글등록" on:click="{post_comment}">
 </form>

@@ -3,6 +3,7 @@
   import Home from "./routes/Home.svelte"
   import Detail from "./routes/Detail.svelte"
   import PostCreate from "./routes/PostCreate.svelte"
+  import Navigation from "./components/Navigation.svelte"
 
   const routes = {
     '/': Home,
@@ -11,4 +12,5 @@
   }
 </script>
 
+<Navigation />
 <Router {routes}/>

@@ -35,4 +35,5 @@
         {/each}
         </tbody>
     </table>
+    <a use:link href="/post-create" class="btn btn-primary">게시글 등록하기</a>
 </div>

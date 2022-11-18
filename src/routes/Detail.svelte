@@ -35,7 +35,7 @@
     }
 </script>
 
-<h1>{post.subject}</h1>
+<!-- <h1>{post.subject}</h1>
 <div>
     {post.content}
 </div>
@@ -48,4 +48,41 @@
 <form method="post">
     <textarea rows="15" bind:value={content}></textarea>
     <input type="submit" value="댓글등록" on:click="{post_comment}">
-</form>
+</form> -->
+
+<div class="container my-3">
+    <!-- 질문 -->
+    <h2 class="border-bottom py-2">{post.subject}</h2>
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;">{post.content}</div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2">
+                    {post.create_date}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 답변 목록 -->
+    <h5 class="border-bottom my-3 py-2">{post.comments.length}개의 답변이 있습니다.</h5>
+    {#each post.comments as comment}
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="card-text" style="white-space: pre-line;">{comment.content}</div>
+            <div class="d-flex justify-content-end">
+                <div class="badge bg-light text-dark p-2">
+                    {comment.create_date}
+                </div>
+            </div>
+        </div>
+    </div>
+    {/each}
+    <!-- 답변 등록 -->
+    <Error error={error} />
+    <form method="post" class="my-3">
+        <div class="mb-3">
+            <textarea rows="10" bind:value={content} class="form-control" />
+        </div>
+        <input type="submit" value="댓글등록" class="btn btn-primary" on:click="{post_comment}" />
+    </form>
+</div>

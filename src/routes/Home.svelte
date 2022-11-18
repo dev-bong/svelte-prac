@@ -12,12 +12,8 @@
   
     get_post_list()
   </script>
-  
-  <!-- <ul>
-    {#each post_list as post}
-      <li><a use:link href="/detail/{post.id}">{post.subject}</a></li>
-    {/each}
-  </ul> -->
+
+
   <div class="container my-3">
     <table class="table">
         <thead>

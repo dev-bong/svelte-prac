@@ -35,20 +35,6 @@
     }
 </script>
 
-<!-- <h1>{post.subject}</h1>
-<div>
-    {post.content}
-</div>
-<ul>
-    {#each post.comments as comment}
-        <li>{comment.content}</li>
-    {/each}
-</ul>
-<Error error={error} />
-<form method="post">
-    <textarea rows="15" bind:value={content}></textarea>
-    <input type="submit" value="댓글등록" on:click="{post_comment}">
-</form> -->
 
 <div class="container my-3">
     <!-- 질문 -->

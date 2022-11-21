@@ -3,14 +3,24 @@
     import { link } from 'svelte-spa-router'
 
     let post_list = []
+    let size = 10
+    let page = 0
+    let total = 0
+    $: total_page = Math.ceil(total/size)
   
-    function get_post_list() {
-        fastapi('get', '/api/post/list', {}, (json) => {
-            post_list = json
+    function get_post_list(_page) {
+        let params = {
+            page: _page,
+            size: size
+        }
+        fastapi('get', '/api/post/list', params, (json) => {
+            post_list = json.post_list
+            page = _page
+            total = json.total
         })
     }
   
-    get_post_list()
+    get_post_list(0)
   </script>
 
 
@@ -35,5 +45,25 @@
         {/each}
         </tbody>
     </table>
+    <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center">
+        <!-- 이전페이지 -->
+        <li class="page-item {page <= 0 && 'disabled'}">
+            <button class="page-link" on:click="{() => get_post_list(page-1)}">이전</button>
+        </li>
+        <!-- 페이지번호 -->
+        {#each Array(total_page) as _, loop_page}
+        {#if loop_page >= page-5 && loop_page <= page+5}
+        <li class="page-item {loop_page === page && 'active'}">
+            <button on:click="{() => get_post_list(loop_page)}" class="page-link">{loop_page+1}</button>
+        </li>
+        {/if}
+        {/each}
+        <!-- 다음페이지 -->
+        <li class="page-item {page >= total_page-1 && 'disabled'}">
+            <button class="page-link" on:click="{() => get_post_list(page+1)}">다음</button>
+        </li>
+    </ul>
+    <!-- 페이징처리 끝 -->
     <a use:link href="/post-create" class="btn btn-primary">게시글 등록하기</a>
 </div>

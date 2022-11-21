@@ -50,7 +50,7 @@
         </div>
     </div>
     <!-- 답변 목록 -->
-    <h5 class="border-bottom my-3 py-2">{post.comments.length}개의 답변이 있습니다.</h5>
+    <h5 class="border-bottom my-3 py-2">{post.comments.length}개의 댓글이 있습니다.</h5>
     {#each post.comments as comment}
     <div class="card my-3">
         <div class="card-body">

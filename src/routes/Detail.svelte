@@ -2,6 +2,8 @@
     import fastapi from "../lib/api"
     import Error from "../components/Error.svelte"
     import { push } from 'svelte-spa-router'
+    import moment from 'moment/min/moment-with-locales'
+    moment.locale('ko')
 
     export let params = {}
     let post_id = params.post_id
@@ -45,12 +47,12 @@
             <div class="card-text" style="white-space: pre-line;">{post.content}</div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2">
-                    {post.create_date}
+                    {moment(post.create_date).format("YYYY년 MM월 DD일 hh:mm a")}
                 </div>
             </div>
         </div>
     </div>
-    
+
     <button class="btn btn-secondary" on:click="{() => {
         push('/')
     }}">목록으로</button>
@@ -63,7 +65,7 @@
             <div class="card-text" style="white-space: pre-line;">{comment.content}</div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2">
-                    {comment.create_date}
+                    {moment(comment.create_date).format("YYYY년 MM월 DD일 hh:mm a")}
                 </div>
             </div>
         </div>

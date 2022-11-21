@@ -38,7 +38,7 @@
         <tbody>
         {#each post_list as post, i}
         <tr>
-            <td>{i+1}</td>
+            <td>{ total - ($page * size) - i }</td>
             <td>
                 <a use:link href="/detail/{post.id}">{post.subject}</a>
             </td>

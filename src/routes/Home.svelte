@@ -1,7 +1,7 @@
 <script>
     import fastapi from "../lib/api"
     import { link } from 'svelte-spa-router'
-    import { page } from "../lib/store"
+    import { page, is_login } from "../lib/store"
     import moment from 'moment/min/moment-with-locales'
     moment.locale('ko')
 
@@ -70,5 +70,5 @@
         </li>
     </ul>
     <!-- 페이징처리 끝 -->
-    <a use:link href="/post-create" class="btn btn-primary">게시글 등록하기</a>
+    <a use:link href="/post-create" class="btn btn-primary {$is_login ? '' : 'disabled'}">게시글 등록하기</a>
 </div>

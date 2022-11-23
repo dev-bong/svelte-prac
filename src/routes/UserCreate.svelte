@@ -7,6 +7,7 @@
     let username = ''
     let password1 = ''
     let password2 = ''
+    let sign_up_code = ''
 
     function post_user(event) {
         event.preventDefault()
@@ -14,7 +15,8 @@
         let params = {
             username: username,
             password1: password1,
-            password2: password2
+            password2: password2,
+            sign_up_code: sign_up_code
         }
         fastapi('post', url, params, 
             (json) => {
@@ -42,6 +44,10 @@
         <div class="mb-3">
             <label for="password2">비밀번호 확인</label>
             <input type="password" class="form-control" id="password2" bind:value="{password2}">
+        </div>
+        <div class="mb-3">
+            <label for="username">가입 코드</label>
+            <input type="text" class="form-control" id="username" bind:value="{sign_up_code}">
         </div>
         <button type="submit" class="btn btn-primary" on:click="{post_user}">생성하기</button>
     </form>

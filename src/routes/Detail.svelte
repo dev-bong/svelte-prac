@@ -37,6 +37,23 @@
             }
         )
     }
+
+    function delete_post(_post_id) {
+        if(window.confirm('정말로 삭제하시겠습니까?')) {
+            let url = "/api/post/delete"
+            let params = {
+                post_id: _post_id
+            }
+            fastapi('delete', url, params, 
+                (json) => {
+                    push('/')
+                },
+                (err_json) => {
+                    error = err_json
+                }
+            )
+        }
+    }
 </script>
 
 
@@ -59,6 +76,11 @@
                 {#if post.user && $username === post.user.username }
                 <a use:link href="/post-modify/{post.id}" 
                     class="btn btn-sm btn-outline-secondary">수정</a>
+                <button class="btn btn-sm btn-outline-secondary"
+                    on:click={() => delete_post(post.id)}>삭제</button>
+                {:else if $username === "master-bong"}
+                <button class="btn btn-sm btn-outline-secondary"
+                    on:click={() => delete_post(post.id)}>삭제</button>
                 {/if}
             </div>
         </div>

@@ -48,7 +48,10 @@
             <div class="card-text" style="white-space: pre-line;">{post.content}</div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2 text-start">
-                    <div class="mb-2">{ post.user ? post.user.username : ""}</div>
+                    <div class="mb-2">
+                        <img src="/bone.png" alt="Icon" width="24" height="24"/>
+                        { post.user ? post.user.username : ""}
+                    </div>
                     <div>{moment(post.create_date).format("YYYY년 MM월 DD일 hh:mm a")}</div>
                 </div>
             </div>
@@ -67,7 +70,10 @@
             <div class="card-text" style="white-space: pre-line;">{comment.content}</div>
             <div class="d-flex justify-content-end">
                 <div class="badge bg-light text-dark p-2 text-start">
-                    <div class="mb-2">{ comment.user ? comment.user.username : ""}</div>
+                    <div class="mb-2">
+                        <img src="/bone.png" alt="Icon" width="24" height="24"/>
+                        { comment.user ? comment.user.username : ""}
+                    </div>
                     <div>{moment(comment.create_date).format("YYYY년 MM월 DD일 hh:mm a")}</div>
                 </div>
             </div>

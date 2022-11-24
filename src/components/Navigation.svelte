@@ -6,7 +6,10 @@
 <!-- 네비게이션바 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <div class="container-fluid">
-        <a use:link class="navbar-brand" href="/" on:click="{() => {$page = 0}}">게시판 v0</a>
+        <div class="navbar-item">
+            <img src="/bark.png" alt="Logo" width="64" height="64" />
+        </div>
+        <a use:link class="navbar-brand" href="/" on:click="{() => {$page = 0}}">개소리 한마당</a>
         <button
             class="navbar-toggler"
             type="button"

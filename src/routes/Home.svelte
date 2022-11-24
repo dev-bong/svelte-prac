@@ -46,7 +46,10 @@
                 <span class="text-danger small mx-2">{post.comments.length}</span>
                 {/if}
             </td>
-            <td>{ post.user ? post.user.username : "" }</td>
+            <td>
+                <img src="/bone.png" alt="Icon" width="24" height="24"/>
+                { post.user ? post.user.username : "" }
+            </td>
             <td>{moment(post.create_date).format("YYYY년 MM월 DD일 hh:mm a")}</td>
         </tr>
         {/each}

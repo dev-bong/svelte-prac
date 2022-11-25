@@ -47,7 +47,11 @@
                 {/if}
             </td>
             <td>
-                <img src="/bone.png" alt="Icon" width="24" height="24"/>
+                {#if post.user && post.user.icon }
+                    <img src="/{post.user.icon}.png" alt="Icon" width="36" height="36"/>
+                {:else}
+                    <img src="/bone.png" alt="Icon" width="36" height="36"/>
+                {/if}
                 { post.user ? post.user.username : "" }
             </td>
             <td>{moment(post.create_date).format("YYYY년 MM월 DD일 hh:mm a")}</td>

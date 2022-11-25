@@ -81,6 +81,12 @@
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;">{post.content}</div>
             <div class="d-flex justify-content-end">
+                {#if post.modify_date }
+                <div class="badge bg-light text-dark p-2 text-start mx-3">
+                    <div class="mb-2">수정 일시</div>
+                    <div>{moment(post.modify_date).format("YYYY년 MM월 DD일 hh:mm a")}</div>
+                </div>
+                {/if}
                 <div class="badge bg-light text-dark p-2 text-start">
                     <div class="mb-2">
                         <img src="/bone.png" alt="Icon" width="24" height="24"/>

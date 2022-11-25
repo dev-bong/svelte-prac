@@ -54,11 +54,28 @@
             )
         }
     }
+
+    function delete_comment(comment_id) {
+        if(window.confirm('정말로 삭제하시겠습니까?')) {
+            let url = "/api/comment/delete"
+            let params = {
+                comment_id: comment_id
+            }
+            fastapi('delete', url, params, 
+                (json) => {
+                    get_post()
+                },
+                (err_json) => {
+                    error = err_json
+                }
+            )
+        }
+    }
 </script>
 
 
 <div class="container my-3">
-    <!-- 질문 -->
+    <!-- 게시글 -->
     <h2 class="border-bottom py-2">{post.subject}</h2>
     <div class="card my-3">
         <div class="card-body">
@@ -90,7 +107,7 @@
         push('/')
     }}">목록으로</button>
 
-    <!-- 답변 목록 -->
+    <!-- 댓글 목록 -->
     <h5 class="border-bottom my-3 py-2">{post.comments.length}개의 댓글이 있습니다.</h5>
     {#each post.comments as comment}
     <div class="card my-3">
@@ -105,10 +122,19 @@
                     <div>{moment(comment.create_date).format("YYYY년 MM월 DD일 hh:mm a")}</div>
                 </div>
             </div>
+            <div class="my-3">
+                {#if comment.user && $username === comment.user.username }
+                <button class="btn btn-sm btn-outline-secondary"
+                    on:click={() => delete_comment(comment.id) }>삭제</button>
+                {:else if $username === "master-bong"}
+                <button class="btn btn-sm btn-outline-secondary"
+                    on:click={() => delete_comment(comment.id) }>삭제</button>
+                {/if}
+            </div>
         </div>
     </div>
     {/each}
-    <!-- 답변 등록 -->
+    <!-- 댓글 등록 -->
     <Error error={error} />
     <form method="post" class="my-3">
         <div class="mb-3">
